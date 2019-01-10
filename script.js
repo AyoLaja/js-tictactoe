@@ -31,6 +31,9 @@ function startGame() {
 }
 
 function turnClick(square) {
+    //Checks if the cell on the board is a number or an X or O
+    //If number player can take turn on that cell.
+    //Else a turn has already been played there
     if (typeof originalBoard[square.target.id] == 'number') {
         turn(square.target.id, humanPlayer)
 
@@ -39,9 +42,11 @@ function turnClick(square) {
             turn(bestSpot(), aiPlayer)
         }
     }
+    // console.log(originalBoard)
 }
 
 function turn(squareId, player) {
+    //Replace originalBoard array element with either 'X' for human or 'O' for AI
     originalBoard[squareId] = player
     document.getElementById(squareId).innerText = player
 
