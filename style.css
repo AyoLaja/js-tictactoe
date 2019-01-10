@@ -1,0 +1,51 @@
+body {
+    background: #34e89e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #0f3443, #34e89e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #0f3443, #34e89e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.main {
+    position: relative;
+    height: inherit;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    height: 500px;
+    width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 50px 100px -30px rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 50px 100px -30px rgba(0,0,0,.5);
+}
+
+table {
+    height: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid inherit;
+}
+
+td {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 30px;
+    border-bottom: 1px solid rgba(47, 79, 79, 0.377);
+    border-left: 1px solid rgba(47, 79, 79, 0.377);
+}
+
+table tr:last-child td {
+    border-bottom-width: 0px;
+}
+
+table tr td:first-child {
+    border-left-width: 0px;
+}
