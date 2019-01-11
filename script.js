@@ -100,9 +100,9 @@ function emptySquares() {
 
 function bestSpot() {
     //This is why ai plays in the next available spot (not really the next best spot)
-    //return emptySquares()[2] || emptySquares()[1] || emptySquares()[0] 
+    return emptySquares()[2] || emptySquares()[1] || emptySquares()[0] 
     
-    return minimax(originalBoard, aiPlayer).index
+    //return minimax(originalBoard, aiPlayer).index
 }
 
 function checkTie() {
