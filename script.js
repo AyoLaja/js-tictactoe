@@ -67,8 +67,10 @@ function checkWin(board, player) {
     let gameWon = null
     
     for (let [index, win] of winCombos.entries()) {
+        //Checks if the player has played in every spot that counts as a win
         if (win.every(element => plays.indexOf(element) > -1)) {
             gameWon = { index: index, player: player }
+            console.log(gameWon)
             break
         }
     }
@@ -97,12 +99,13 @@ function emptySquares() {
 }
 
 function bestSpot() {
-    return emptySquares()[0]
+    //This is why ai plays in the next available spot (not really the next best spot)
+    return emptySquares()[2] || emptySquares()[1] || emptySquares()[0] 
 }
 
 function checkTie() {
     if (emptySquares().length == 0) {
-        for (c in cells) {
+        for (c of cells) {
             c.style.backgroundColor = 'green'
             c.removeEventListener('click', turnClick, false)
         }
