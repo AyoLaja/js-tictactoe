@@ -100,7 +100,9 @@ function emptySquares() {
 
 function bestSpot() {
     //This is why ai plays in the next available spot (not really the next best spot)
-    return emptySquares()[2] || emptySquares()[1] || emptySquares()[0] 
+    //return emptySquares()[2] || emptySquares()[1] || emptySquares()[0] 
+    
+    return minimax(originalBoard, aiPlayer).index
 }
 
 function checkTie() {
@@ -116,3 +118,65 @@ function checkTie() {
         return false
     }
 } 
+
+function minimax(newBoard, player) {
+    var availableSpots = emptySquares(newBoard)
+    if (checkWin(newBoard, player)) {
+        //if human wins
+        return { score: -10 } 
+    }
+    else if (checkWin(newBoard, aiPlayer)) {
+        //if AI wins
+        return { score: 20 }
+    }
+    else if (availableSpots.length == 0) {
+        //if theres a tie
+        return { score: 0 }
+    }
+
+    var moves = []
+
+    for (let spot of availableSpots) {
+        var move = {}
+        move.index = newBoard[availableSpots[spot]]
+        newBoard[availableSpots[spot]] = player
+
+        if (player == aiPlayer) {
+            var result = minimax(newBoard, humanPlayer)
+            move.score = result.score
+        }
+        else {
+            var result = minimax(newBoard, aiPlayer)
+            move.score = result.score
+        }
+
+        newBoard[availableSpots[spot]] = move.index
+
+        moves.push(move)
+    }
+
+    var bestMove 
+
+    if (player === aiPlayer) {
+        var bestScore = -10000
+
+        for (let move in moves) {
+            if (move.score > bestScore) {
+                bestScore = move.score
+                bestMove = move
+            }
+        }
+    }
+    else {
+        var bestScore = 10000
+
+        for (let move in moves) {
+            if (move.score < bestScore) {
+                bestScore = move.score
+                bestMove = move
+            }
+        }
+    }
+
+    return moves[bestMove]
+}
